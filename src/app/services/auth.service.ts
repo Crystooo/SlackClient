@@ -6,7 +6,7 @@ import { User } from '../interfaces/user'
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser?:string = "";
+  currentUserToken?:string = "";
 
   genericUrl="http://localhost:3001";
 
@@ -14,18 +14,15 @@ export class AuthService {
 
   //httpHeaders = new HttpHeaders().set('Content-Type', 'application/json')//.set('Access-Control-Allow-Origin', '*');
   
-  register = (user: User)  => this.http.post(`${this.genericUrl}/auth/register`, user).toPromise() as Promise<{message:string}>
+  register = (user: User) => this.http.post(`${this.genericUrl}/auth/register`, user).toPromise() as Promise<{message:string}>
   
-  
-  login = async (tkn:string,email:string,password:string) =>{
+  login = async ({tkn,email,password}:{tkn:string,email:string,password:string}) =>{
     console.log("tkn: ",tkn,"email: ",email,"password: ",password)
-    const headers = new HttpHeaders({"Content-type": "application/json"});
-    let m = await this.http.post(`${this.genericUrl}/auth/login`, "",{headers: {tkn,email,password}}).toPromise()
+    //const headers = new HttpHeaders({"Content-type": "application/json"});
+    let m = await this.http.post(`${this.genericUrl}/auth/login`, "",{headers: {tkn,email,password}}).toPromise() as Promise<{token:string,username:string}>
     return m;//aggiunta una stringa vuota, prima di passare gli headers. NON HO CAPITO IL PROBLEMA
     //SE NON METTO NIENTE PRIMA DI HEADERS, IN AUTOMATICO SI PRENDERA' GLI HEADERS COME BODY
   }
   
-  
-
   //logout = (tkn:string) => this.http.delete(`${this.genericUrl}/auth/logout`,tkn);
 }

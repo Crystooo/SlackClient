@@ -12,10 +12,11 @@ export class AuthComponent implements OnInit {
   password:string = "";
   confirmPassword:string = "";
   error:string = "";
+  tkn:string=""
+  link="home"
   
   constructor(private authService: AuthService) { }
-
-  ngOnInit(): void {
+  async ngOnInit(){
   }
 
   animation() {
@@ -37,8 +38,23 @@ export class AuthComponent implements OnInit {
 
   login =async  () => {
     if(this.email != "" && this.password != ""){
-      let test = await this.authService.login("", this.email, this.password);
-      console.log("test->", test);
+      let {token,username} = await this.authService.login({tkn:this.tkn,email:this.email,password:this.password});
+      //probabilmente passa un token vuoto, e non esistendo ne crea uno
+      console.log("token: ",token)
+      this.tkn=token
+      this.username=username
+      //vorrei fare semplicemente questo, ma l'oggetto test non ha la proprieta token, nonostante l'oggetto intero la mostra
+      console.log(this.username)
+    }/*else{
+      this.link="failedauth"//questo metodo non funziona
+    }*/
+  }
+
+  emptyCampsCheck = () => {
+    if(this.email ==""||this.password==""){//ce bisogno di poter prendere bene il test per controllare l'input\
+      this.link="failedauth"
+    }else{
+      this.link="home"
     }
   }
 
