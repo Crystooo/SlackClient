@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class AuthComponent implements OnInit {
   link=""
   failedAuth=false
   
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router:Router) { }
   async ngOnInit(){
   }
 
@@ -43,15 +44,13 @@ export class AuthComponent implements OnInit {
       try{
         const {token,username}= await this.authService.login({tkn:this.tkn,email:this.email,password:this.password})
         if(token){//il token e sotto await, non e immediato
-          this.link="home"
+          this.router.navigate(["home"]);
         }
         this.tkn=token
         this.username=username
       }catch(e){
         console.log(e)
       }
-      //probabilmente passa un token vuoto, e non esistendo ne crea uno
-      //vorrei fare semplicemente questo, ma l'oggetto test non ha la proprieta token, nonostante l'oggetto intero la mostra
     }/*else{
       this.link="failedauth"//questo metodo non funziona
     }*/

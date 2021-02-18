@@ -1,0 +1,21 @@
+.form-control-primary {
+    margin: 1px;
+    border-radius: 2px;
+    border: 1px;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    padding: 70px 0 0 10px;
+    border-right: 2px solid #7579ff ;
+}
+.sidebar-left{
+    position: sticky;
+    top: 0;
+    height: calc( 100vh -70px);
+}
