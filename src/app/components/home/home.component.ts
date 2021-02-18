@@ -20,21 +20,24 @@ export class HomeComponent implements OnInit {
   }
 
   createWorkspace=async ()=>{
-    let test= await this.homeService.createWorkspace({token:this.tkn,name:this.workspaceName})
-    console.log("test: ",test)
-    this.workspaceId=test.workspaceId
+    let res= await this.homeService.createWorkspace(this.tkn,this.workspaceName);
+    console.log("test: ",res);
+    this.workspaceId=res.workspaceId;
   }
 
   joinWorkspace=async ()=>{
-    let test= await this.homeService.joinWorkspace({token:this.tkn,workspaceId:this.workspaceId});
+    let res= await this.homeService.joinWorkspace(this.tkn,this.workspaceId);
+    console.log(res);
   }
 
   leaveWorkspace=async ()=>{
-    let test= await this.homeService.leaveWorkspace({token:this.tkn,workspaceId:this.workspaceId});
+    let res= await this.homeService.leaveWorkspace(this.tkn,this.workspaceId);
+    console.log(res);
   }
 
   deleteAccount=async ()=>{
-    let test= await this.homeService.deleteAccount({token:this.tkn,workspaceId:this.workspaceId});
+    let res= await this.homeService.deleteAccount(this.tkn,this.workspaceId);
+    console.log(res);
   }
 
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>How to Design Login & Registration Form Transition</title>
+	<title></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="auth.component.css">
@@ -20,13 +20,13 @@
         <span>Password</span>
         <input type="password" name="password" required [(ngModel)]="password">
       </label>
-      <button class="submit" type="button" (click)="login()" routerLink={{link}}>Sign In</button><!-- {{emptyCampsCheck()}}-->
+      <button class="submit" type="button" (click)="login()" >Sign In</button><!-- {{emptyCampsCheck()}}-->
       <p class="forgot-pass">Forgot Password ?</p>
-      <div *ngIf="failedAuth"><p>incorrect email or password, retry</p></div>
+      <div *ngIf="failedAuth"><p class="forgot-pass">incorrect email or password, retry</p></div>
     </div>
 
     <div class="sub-cont">
-      <div class="img">
+      <div class="img" >
         <div class="img-text m-up">
           <h2>New here?</h2>
           <p>Sign up and discover great amount of new opportunities!</p>

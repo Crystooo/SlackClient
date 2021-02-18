@@ -8,30 +8,28 @@ export class HomeService {
   genericUrl="http://localhost:3001";
   constructor(private http:HttpClient) { }
 
-  createWorkspace=async ({token,name}:{token:string,name:string})=>{
-    let m = await this.http.post(`${this.genericUrl}/home/workspace`, {body: {name}},{headers: {token}}).toPromise()as Promise<{message:string,workspaceId:string}>
-    return m
+  createWorkspace=async (token:string,name:string)=>{
+    let workInfo = await this.http.post(`${this.genericUrl}/home/workspace`,name,{headers: {token}}).toPromise() as Promise<{message:string,workspaceId:string}>
+    return workInfo;
   }
 
-  joinWorkspace=async ({token,workspaceId}:{token:string,workspaceId:string})=>{
-    let m = await this.http.post(`${this.genericUrl}/home/join/workspace`, {body: {workspaceId}},{headers: {token}}).toPromise()as Promise<{message:string}>
-    return m
+  joinWorkspace=async (token:string,workspaceId:string)=>{
+    let message = await this.http.post(`${this.genericUrl}/home/join/workspace`,workspaceId,{headers: {token}}).toPromise() as Promise<{message:string}>
+    return message;
   }
 
-  getAllWorkspaces=async ({token}:{token:string})=>{
-    //let m = await this.http.get(`${this.genericUrl}/home/workspace`, {body: {workspaceId}},{headers: {token}}).toPromise()as Promise<{userWorkspacesName: {id:string, name:string}[]}>
-    //return m
+  getAllWorkspaces=async (tkn:string)=>{
+    let workspacesNames = await this.http.get(`${this.genericUrl}/home/workspace`, { headers: { tkn } }).toPromise() as unknown as Promise<{id:string, name:string}[]>
+    return workspacesNames;
   }
 
-  leaveWorkspace=async ({token,workspaceId}:{token:string,workspaceId:string})=>{
-    let m = await this.http.delete(`${this.genericUrl}/home/workspace`,{headers: {token,workspaceId}}).toPromise()as Promise<{message:string}>
-    return m
+  leaveWorkspace=async (tkn:string,workspace_id:string)=>{
+    let message = await this.http.delete(`${this.genericUrl}/home/workspace`,{headers: {tkn,workspace_id}}).toPromise()as Promise<{message:string}>
+    return message;
   }
 
-  deleteAccount=async ({token,workspaceId}:{token:string,workspaceId:string})=>{
-    let m = await this.http.delete(`${this.genericUrl}/home/workspace`,{headers: {token,workspaceId}}).toPromise()as Promise<{message:string}>
-    return m
+  deleteAccount=async (tkn:string,workspace_id:string)=>{
+    let message = await this.http.delete(`${this.genericUrl}/home/user`,{headers: {tkn,workspace_id}}).toPromise()as Promise<{message:string}>
+    return message;
   }
-
-
 }
