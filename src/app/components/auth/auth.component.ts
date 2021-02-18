@@ -13,7 +13,8 @@ export class AuthComponent implements OnInit {
   confirmPassword:string = "";
   error:string = "";
   tkn:string=""
-  link="home"
+  link=""
+  failedAuth=false
   
   constructor(private authService: AuthService) { }
   async ngOnInit(){
@@ -37,14 +38,20 @@ export class AuthComponent implements OnInit {
   }
 
   login =async  () => {
+    this.failedAuth=true
     if(this.email != "" && this.password != ""){
-      let {token,username} = await this.authService.login({tkn:this.tkn,email:this.email,password:this.password});
+      try{
+        const {token,username}= await this.authService.login({tkn:this.tkn,email:this.email,password:this.password})
+        if(token){//il token e sotto await, non e immediato
+          this.link="home"
+        }
+        this.tkn=token
+        this.username=username
+      }catch(e){
+        console.log(e)
+      }
       //probabilmente passa un token vuoto, e non esistendo ne crea uno
-      console.log("token: ",token)
-      this.tkn=token
-      this.username=username
       //vorrei fare semplicemente questo, ma l'oggetto test non ha la proprieta token, nonostante l'oggetto intero la mostra
-      console.log(this.username)
     }/*else{
       this.link="failedauth"//questo metodo non funziona
     }*/

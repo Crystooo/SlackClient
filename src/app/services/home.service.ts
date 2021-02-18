@@ -14,7 +14,7 @@ export class HomeService {
   }
 
   joinWorkspace=async ({token,workspaceId}:{token:string,workspaceId:string})=>{
-    let m = await this.http.post(`${this.genericUrl}/home/join/workspace`, {body: {workspaceId}},{headers: {token}}).toPromise()
+    let m = await this.http.post(`${this.genericUrl}/home/join/workspace`, {body: {workspaceId}},{headers: {token}}).toPromise()as Promise<{message:string}>
     return m
   }
 
@@ -23,6 +23,15 @@ export class HomeService {
     //return m
   }
 
+  leaveWorkspace=async ({token,workspaceId}:{token:string,workspaceId:string})=>{
+    let m = await this.http.delete(`${this.genericUrl}/home/workspace`,{headers: {token,workspaceId}}).toPromise()as Promise<{message:string}>
+    return m
+  }
+
+  deleteAccount=async ({token,workspaceId}:{token:string,workspaceId:string})=>{
+    let m = await this.http.delete(`${this.genericUrl}/home/workspace`,{headers: {token,workspaceId}}).toPromise()as Promise<{message:string}>
+    return m
+  }
 
 
 }
