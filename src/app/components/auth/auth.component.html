@@ -20,7 +20,7 @@
         <span>Password</span>
         <input type="password" name="password" required [(ngModel)]="password">
       </label>
-      <button class="submit" type="button" (click)="login()">Sign In</button>
+      <button class="submit" type="button" (click)="login()" routerLink={{link}}>Sign In</button>{{emptyCampsCheck()}}
       <p class="forgot-pass">Forgot Password ?</p>
     </div>
 
