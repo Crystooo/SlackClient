@@ -17,38 +17,36 @@
       </div>
       <div class="col-sm">
         <h1 style="text-align: center;">Welcome,</h1>
-        <h1 style="text-align: center;">Username</h1>
+        <h1 style="text-align: center;">{{username}}</h1>
         <div class="col-auto my-1">
           <label class="mr-sm-2" for="inlineFormCustomSelect">Select Workspace:</label>
-          <select class="custom-select mr-sm-3 center" id="inlineFormCustomSelect">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select class="custom-select mr-sm-3 center" id="inlineFormCustomSelect" [(ngModel)]="workspaceId">
+            <option *ngIf="workspaces.length == 0" value="" selected>no workspaces joined yet!</option>
+            <option *ngFor="let workspace of workspaces;" [value]="workspace.id">{{workspace.name}}</option>
           </select>
         </div>
         <div>
-          <button type="submit" class="col-3  btn   btn-primary buttsub">JOIN</button>
+          <button type="submit" class="col-3  btn   btn-primary buttsub" (click)='enterWorkspace()'>ENTER</button>
         </div>
 
         <form>
           <div class="form-group">
-            <label for="">Create Channel:</label>
+            <label for="">Create Workspace:</label>
             <div class="col-5 center ">
-            <input type="text" class="form-control " id="" placeholder="name channel..">
+              <input type="text" class="form-control " id="" name="workspaceName" placeholder="Workspace name.." [(ngModel)]="workspaceName">
             </div>
           </div>
-          <button type="submit" class="col-3 btn  btn-primary buttsub" >CREATE</button>
+          <button type="submit" class="col-3 btn  btn-primary buttsub" (click)='createWorkspace()'>CREATE</button>
         </form>
 
         <form>
           <div class="form-group">
-            <label for="">Join Channel:</label>
+            <label for="">Join Workspace:</label>
             <div class="col-5 center ">
-              <input type="text" class="form-control" id="" placeholder="name channel..">
+              <input type="text" class="form-control" name="workspaceId" id="" placeholder="Insert workspace token" [(ngModel)]='workspaceToJoin'>
               </div>
           </div>
-          <button type="submit" class="col-3 btn btn-primary buttsub" style="margin-bottom: 1em;"  href=""> JOIN</button>
+          <button type="submit" class="col-3 btn btn-primary buttsub" style="margin-bottom: 1em;"  (click)='joinWorkspace()'>JOIN</button>
         </form>
         
        

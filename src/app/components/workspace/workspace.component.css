@@ -19,3 +19,10 @@
     top: 0;
     height: calc( 100vh -70px);
 }
+
+.chat{
+    padding-top: 2em;
+    background-color:rgba(75, 2, 101, 0.402);
+
+
+}
