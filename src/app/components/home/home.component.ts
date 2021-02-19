@@ -21,25 +21,31 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.dataService.getUsername();
     this.token = this.dataService.getTkn();
-    this.getAllWorkspaces()
-    console.log(this.token)
+    this.getAllWorkspaces();
   }
 
   createWorkspace=async ()=>{
-    let res= await this.homeService.createWorkspace(this.token,this.workspaceName);
-    console.log("createWorkspace: ",res);
-    this.workspaceId=res.workspaceId;
+    let {workspaceId}= await this.homeService.createWorkspace(this.token,this.workspaceName);
+    this.workspaceId=workspaceId;
+    if(workspaceId){//il token e sotto await, non e immediato
+      this.dataService.setWorkspaceId(this.workspaceId);
+      this.router.navigate(["workspace"]);
+    }
   }
 
   joinWorkspace=async ()=>{
     let res= await this.homeService.joinWorkspace(this.token,this.workspaceToJoin);
+    if(this.workspaceName!="workspace not found"){//il token e sotto await, non e immediato
+      this.dataService.setWorkspaceId(this.workspaceToJoin);
+      this.router.navigate(["workspace"]);
+    }
     console.log(res);
   }
 
-  leaveWorkspace=async ()=>{
+  /*leaveWorkspace=async ()=>{
     let res= await this.homeService.leaveWorkspace(this.token,this.workspaceId);
     console.log(res);
-  }
+  }*/
 
   deleteAccount=async ()=>{
     let res= await this.homeService.deleteAccount(this.token,this.workspaceId);
@@ -53,7 +59,6 @@ export class HomeComponent implements OnInit {
 
   enterWorkspace = () => {
     this.dataService.setWorkspaceId(this.workspaceId) ;
-    console.log(this.workspaceId);
-    //this.router.navigate([workspace]);
+    this.router.navigate(["workspace"]);
   }
 }

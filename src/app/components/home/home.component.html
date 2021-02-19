@@ -23,9 +23,6 @@
           <select class="custom-select mr-sm-3 center" id="inlineFormCustomSelect" [(ngModel)]="workspaceId">
             <option *ngIf="workspaces.length == 0" value="" selected>no workspaces joined yet!</option>
             <option *ngFor="let workspace of workspaces;" [value]="workspace.id">{{workspace.name}}</option>
-            <!--<option value="1">One</option>qui ci sarà un ngfor che cicla la lista lista di workpsace di un utente
-            <option value="2">Two</option>
-            <option value="3">Three</option>-->
           </select>
         </div>
         <div>

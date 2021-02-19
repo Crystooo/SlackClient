@@ -19,14 +19,14 @@ export class HomeService {
   }
 
   getAllWorkspaces=async (tkn:string)=>{
-    let workspacesNames = await this.http.get(`${this.genericUrl}/home/workspace`, { headers: { tkn } }).toPromise() as unknown as Promise<{id:string, name:string}[]>
+    let workspacesNames = await this.http.get(`${this.genericUrl}/home/workspace`, { headers: { tkn } }).toPromise() as Promise<{id:string, name:string}[]>
     return workspacesNames;
   }
 
-  leaveWorkspace=async (tkn:string,workspace_id:string)=>{
+  /* leaveWorkspace=async (tkn:string,workspace_id:string)=>{
     let message = await this.http.delete(`${this.genericUrl}/home/workspace`,{headers: {tkn,workspace_id}}).toPromise()as Promise<{message:string}>
     return message;
-  }
+  } *///Da mettere su workspace
 
   deleteAccount=async (tkn:string,workspace_id:string)=>{
     let message = await this.http.delete(`${this.genericUrl}/home/user`,{headers: {tkn,workspace_id}}).toPromise()as Promise<{message:string}>

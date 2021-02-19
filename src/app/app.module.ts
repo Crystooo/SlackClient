@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { FailedAuthComponent } from './components/failed-auth/failed-auth.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
+import { ChannelComponent } from './components/channel/channel.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { WorkspaceComponent } from './components/workspace/workspace.component';
     AuthComponent,
     HomeComponent,
     FailedAuthComponent,
-    WorkspaceComponent
+    WorkspaceComponent,
+    ChannelComponent
   ],
   imports: [
     BrowserModule,
