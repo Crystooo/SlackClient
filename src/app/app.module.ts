@@ -8,13 +8,15 @@ import { AuthComponent } from './components/auth/auth.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { FailedAuthComponent } from './components/failed-auth/failed-auth.component';
+import { WorkspaceComponent } from './components/workspace/workspace.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     HomeComponent,
-    FailedAuthComponent
+    FailedAuthComponent,
+    WorkspaceComponent
   ],
   imports: [
     BrowserModule,

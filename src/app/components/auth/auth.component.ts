@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,8 +18,9 @@ export class AuthComponent implements OnInit {
   link=""
   failedAuth=false
   
-  constructor(private authService: AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router:Router, private dataService:DataTransferService) { }
   async ngOnInit(){
+    //this.tkn=""
   }
 
   animation() {
@@ -48,6 +50,8 @@ export class AuthComponent implements OnInit {
         }
         this.tkn=token
         this.username=username
+        this.dataService.setTkn(this.tkn);
+        this.dataService.setUserName(this.username);
       }catch(e){
         console.log(e)
       }
