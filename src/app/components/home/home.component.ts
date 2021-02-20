@@ -15,13 +15,24 @@ export class HomeComponent implements OnInit {
   workspaceToJoin:string=""
   username:string=""
   token:string=""
+  isDeleted:boolean=false
   workspaces:{id:string, name:string}[] = [];
+  
   constructor(private homeService:HomeService, private dataService: DataTransferService, private router:Router) { }
 
   ngOnInit(): void {
-    this.username = this.dataService.getUsername();
-    this.token = this.dataService.getTkn();
+    //this.username = this.dataService.getUsername();
+    //this.token = this.dataService.getTkn();
+    this.username = localStorage.getItem("username") as string;
+    this.token = localStorage.getItem("tkn") as  string;
+    this.isDeleted=false
     this.getAllWorkspaces();
+  }
+
+  enterWorkspace = () => {
+    this.dataService.setWorkspaceId(this.workspaceId);
+    localStorage.setItem("workid", this.workspaceId);
+    this.router.navigate(["workspace"]);
   }
 
   createWorkspace=async ()=>{
@@ -29,6 +40,7 @@ export class HomeComponent implements OnInit {
     this.workspaceId=workspaceId;
     if(workspaceId){//il token e sotto await, non e immediato
       this.dataService.setWorkspaceId(this.workspaceId);
+      localStorage.setItem("workid", this.workspaceId);
       this.router.navigate(["workspace"]);
     }
   }
@@ -37,6 +49,7 @@ export class HomeComponent implements OnInit {
     let res= await this.homeService.joinWorkspace(this.token,this.workspaceToJoin);
     if(this.workspaceName!="workspace not found"){//il token e sotto await, non e immediato
       this.dataService.setWorkspaceId(this.workspaceToJoin);
+      localStorage.setItem("workid", this.workspaceToJoin);
       this.router.navigate(["workspace"]);
     }
     console.log(res);
@@ -49,6 +62,7 @@ export class HomeComponent implements OnInit {
 
   deleteAccount=async ()=>{
     let res= await this.homeService.deleteAccount(this.token,this.workspaceId);
+    this.isDeleted=true;
     console.log(res);
   }
 
@@ -57,8 +71,5 @@ export class HomeComponent implements OnInit {
     console.log(this.workspaces);
   }
 
-  enterWorkspace = () => {
-    this.dataService.setWorkspaceId(this.workspaceId) ;
-    this.router.navigate(["workspace"]);
-  }
+  
 }

@@ -48,7 +48,8 @@
           </div>
           <button type="submit" class="col-3 btn btn-primary buttsub" style="margin-bottom: 1em;"  (click)='joinWorkspace()'>JOIN</button>
         </form>
-        
+        <button class="btn btn-primary" style="color:red;text-align:center" (click)="deleteAccount()">delete account</button>
+        <p style="text-align: center;" *ngIf="isDeleted">account deleted</p>
        
       </div>
     </div>

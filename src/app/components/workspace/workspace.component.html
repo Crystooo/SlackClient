@@ -46,68 +46,41 @@
                     <li class="nav-item">
                       <a class="nav-link " aria-current="">Threads</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Mentions & reactions</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">More</a>
-                    </li>
-                   
                 </ul>   
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div class="" id="" style="padding-top: 2em; padding-left: 1em;">
+                    <div class="">
+                      <h5 class="" id="">
                           Channels
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
+                      </h5>
+                      <div id="" class="" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="">
                           <ul class="nav flex-column">
-                            <li class="nav-item">
-                              <a class="nav-link" aria-current="" href="#">Link</a>
+                            <li class="nav-item" *ngFor="let channel of channels">
+                              <a class="nav-link text" aria-current="" (click)='test(channel.id)'>{{channel.name}}</a>
                             </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="#">Link</a>
-                            </li>
-                            
                           </ul>
                         </div>
                       </div>
                 </div>
 
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Direct messages
-                        </button>
-                      </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>varie chat</strong> 
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          App
-                        </button>
-                      </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>qualcosa metteremo</strong>
-                        </div>
+                    <div class="" style="padding-top: 2em;">
+                      <h5 class="" id="">
+                        Direct Message
+                      </h5>
+                      <div>
+                        <ul class="nav flex-column">
+                          <li class="nav-item"  *ngFor="let user of users">
+                            <a class="nav-link text"  routerLink='/workspace/dm/{{user.email}}'>{{user.username}}</a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
 
             </div>
         </div>
+
+        
 
 
 

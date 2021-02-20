@@ -52,6 +52,8 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.username=username
         this.dataService.setTkn(this.tkn);
         this.dataService.setUserName(this.username);
+        localStorage.setItem("tkn", this.tkn);
+        localStorage.setItem("username", this.username);
       }catch(e){
         this.failedAuth=true
         console.log(e)
