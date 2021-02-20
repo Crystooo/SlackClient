@@ -14,9 +14,12 @@ export class AuthService {
 
   //httpHeaders = new HttpHeaders().set('Content-Type', 'application/json')//.set('Access-Control-Allow-Origin', '*');
   
-  register = (user: User) => this.http.post(`${this.genericUrl}/auth/register`, user).toPromise() as Promise<{message:string}>
+  register = (user: User) => {
+    console.log(user);
+    return this.http.post(`${this.genericUrl}/auth/register`, user)
+    .toPromise() as Promise<{message:string}>}
   
-  login = async ({tkn,email,password}:{tkn:string,email:string,password:string}) =>{
+  login = async (tkn:string,email:string,password:string) =>{
     console.log("tkn: ",tkn,"email: ",email,"password: ",password)
     //const headers = new HttpHeaders({"Content-type": "application/json"});
     let m = await this.http.post(`${this.genericUrl}/auth/login`, "",{headers: {tkn,email,password}}).toPromise() as Promise<{token:string,username:string}>

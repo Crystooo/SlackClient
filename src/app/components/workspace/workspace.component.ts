@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { WorkspaceService } from 'src/app/services/workspace.service';
 
@@ -9,7 +10,7 @@ import { WorkspaceService } from 'src/app/services/workspace.service';
 })
 export class WorkspaceComponent implements OnInit {
 
-  constructor(private dataService:DataTransferService, private workspaceService:WorkspaceService) { }
+  constructor(private dataService:DataTransferService, private workspaceService:WorkspaceService, private router:Router) { }
   id:string = "";
   name:string = "";
   token:string ="";
@@ -17,11 +18,10 @@ export class WorkspaceComponent implements OnInit {
   users:{email:string, username:string}[]=[]
   async ngOnInit() {
     //this.id = this.dataService.getWorkspaceId();
-    this.id = localStorage.getItem("workid") != null ? localStorage.getItem("workid") as string : "";
+    this.id = sessionStorage.getItem("workid") != null ? sessionStorage.getItem("workid") as string : "";
     this.id != "" && (this.name = await (await this.workspaceService.getName(this.id)).name)
     this.channels = await this.workspaceService.getChannels(this.id);
     this.users = await this.workspaceService.getUsers(this.id);
-    console.log(this.users);
   }
 
   leaveWorkspace=async()=>{
@@ -39,6 +39,9 @@ export class WorkspaceComponent implements OnInit {
     console.log("create channel: ",message);
   }
 
-  test =(id:string) => console.log("test", id)
+  selectChannel =(id:string) => {
+    sessionStorage.setItem('channelId', id);
+    this.router.navigate(['channel']);
+  }
 
 }

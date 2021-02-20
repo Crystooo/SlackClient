@@ -37,14 +37,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
-
         </div>
         <!--sidebar-->
         <div class="col-md-2 bg-light d-md-block sidebar">
             <div class="left-sidebar">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                      <a class="nav-link " aria-current="">Threads</a>
+                      <h5 class="nav-link text" aria-current="">Threads</h5>
                     </li>
                 </ul>   
                 <div class="" id="" style="padding-top: 2em; padding-left: 1em;">
@@ -56,13 +55,12 @@
                         <div class="">
                           <ul class="nav flex-column">
                             <li class="nav-item" *ngFor="let channel of channels">
-                              <a class="nav-link text" aria-current="" (click)='test(channel.id)'>{{channel.name}}</a>
+                              <a class="nav-link text" aria-current="" (click)='selectChannel(channel.id)'>{{channel.name}}</a>
                             </li>
                           </ul>
                         </div>
                       </div>
                 </div>
-
                     <div class="" style="padding-top: 2em;">
                       <h5 class="" id="">
                         Direct Message
@@ -76,44 +74,19 @@
                       </div>
                     </div>
                   </div>
-
             </div>
         </div>
-
-        
-
-
-
         <!--main-->
         <div>
-        
             <div role="main" class= "chat">
-
-           
-
-                <label for="userName">Username</label>
-                <input type="text" id="userName" >
-                
-                <label for="message">Message</label>
-                <input type="text" id="message" >
-                
-                
+              <label for="userName">Username</label>
+              <input type="text" id="userName" >
+              <label for="message">Message</label>
+              <input type="text" id="message" >
             </div>
-
         </div>
-
-
     </div>
-
-
-
-
 </div>
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
   </body>
 </html>

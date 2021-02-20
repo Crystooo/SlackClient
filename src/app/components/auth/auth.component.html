@@ -22,7 +22,7 @@
       </label>
       <button class="submit" type="button" (click)="login()" >Sign In</button><!-- {{emptyCampsCheck()}}-->
       <p class="forgot-pass">Forgot Password ?</p>
-      <div *ngIf="failedAuth"><p class="forgot-pass">incorrect email or password, retry</p></div>
+      <div *ngIf="failedAuth"><p class="forgot-pass" style="color:red">incorrect email or password, retry</p></div>
     </div>
 
     <div class="sub-cont">
@@ -59,6 +59,7 @@
           <input type="password" required [(ngModel)]="confirmPassword">
         </label>
         <button type="button" class="submit" (click)="registration()">Sign Up Now</button>
+        <div *ngIf="(password != '' && confirmPassword !='') && password!=confirmPassword "><p class="forgot-pass" style="color: red;">The passwords do not match</p></div>
       </div>
     </div>
   </div>

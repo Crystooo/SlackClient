@@ -9,17 +9,17 @@ export class HomeService {
   constructor(private http:HttpClient) { }
 
   createWorkspace=async (tkn:string,name:string)=>{
-    let workInfo = await this.http.post(`${this.genericUrl}/home/workspace`, {name},{headers: {tkn}}).toPromise() as Promise<{message:string,workspaceId:string}>
+    let workInfo = await this.http.post(`${this.genericUrl}/homes/workspace`, {name},{headers: {tkn}}).toPromise() as Promise<{message:string,workspaceId:string}>
     return workInfo;
   }
 
   joinWorkspace=async (tkn:string,workspace_id:string)=>{
-    let message = await this.http.post(`${this.genericUrl}/home/join/workspace`,null,{headers: {tkn, workspace_id}}).toPromise() as Promise<{message:string}>
+    let message = await this.http.post(`${this.genericUrl}/homes/join/workspace`,null,{headers: {tkn, workspace_id}}).toPromise() as Promise<{message:string}>
     return message;
   }
 
   getAllWorkspaces=async (tkn:string)=>{
-    let workspacesNames = await this.http.get(`${this.genericUrl}/home/workspace`, { headers: { tkn } }).toPromise() as Promise<{id:string, name:string}[]>
+    let workspacesNames = await this.http.get(`${this.genericUrl}/homes/workspace`, { headers: { tkn } }).toPromise() as Promise<{id:string, name:string}[]>
     return workspacesNames;
   }
 
@@ -29,7 +29,7 @@ export class HomeService {
   } *///Da mettere su workspace
 
   deleteAccount=async (tkn:string,workspace_id:string)=>{
-    let message = await this.http.delete(`${this.genericUrl}/home/user`,{headers: {tkn,workspace_id}}).toPromise()as Promise<{message:string}>
+    let message = await this.http.delete(`${this.genericUrl}/homes/user`,{headers: {tkn,workspace_id}}).toPromise()as Promise<{message:string}>
     return message;
   }
 }

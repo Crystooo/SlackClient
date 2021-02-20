@@ -23,15 +23,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //this.username = this.dataService.getUsername();
     //this.token = this.dataService.getTkn();
-    this.username = localStorage.getItem("username") as string;
-    this.token = localStorage.getItem("tkn") as  string;
+    this.username = sessionStorage.getItem("username") as string;
+    this.token = sessionStorage.getItem("tkn") as  string;
     this.isDeleted=false
     this.getAllWorkspaces();
   }
 
   enterWorkspace = () => {
     this.dataService.setWorkspaceId(this.workspaceId);
-    localStorage.setItem("workid", this.workspaceId);
+    sessionStorage.setItem("workid", this.workspaceId);
     this.router.navigate(["workspace"]);
   }
 
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.workspaceId=workspaceId;
     if(workspaceId){//il token e sotto await, non e immediato
       this.dataService.setWorkspaceId(this.workspaceId);
-      localStorage.setItem("workid", this.workspaceId);
+      sessionStorage.setItem("workid", this.workspaceId);
       this.router.navigate(["workspace"]);
     }
   }

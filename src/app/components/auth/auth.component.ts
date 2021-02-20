@@ -33,7 +33,6 @@ export class AuthComponent implements OnInit, OnDestroy {
       if(this.password == this.confirmPassword){
         let {message} = await this.authService.register({email: this.email, username: this.username, password: this.password});
         this.error = message;
-        this.router.navigate(["auth"]);
       }else{
         this.error = "The 2 passwords do not match";
       }
@@ -44,7 +43,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   login =async  () => {
     if(this.email != "" && this.password != ""){
       try{
-        const {token,username}= await this.authService.login({tkn:this.tkn,email:this.email,password:this.password})
+        const {token,username}= await this.authService.login(this.tkn, this.email, this.password)
         if(token){//il token e sotto await, non e immediato
           this.router.navigate(["home"]);
         }
@@ -52,8 +51,8 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.username=username
         this.dataService.setTkn(this.tkn);
         this.dataService.setUserName(this.username);
-        localStorage.setItem("tkn", this.tkn);
-        localStorage.setItem("username", this.username);
+        sessionStorage.setItem("tkn", this.tkn);
+        sessionStorage.setItem("username", this.username);
       }catch(e){
         this.failedAuth=true
         console.log(e)
