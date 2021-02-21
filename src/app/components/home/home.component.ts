@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   createWorkspace=async ()=>{
     let {workspaceId}= await this.homeService.createWorkspace(this.token,this.workspaceName);
     this.workspaceId=workspaceId;
-    if(workspaceId){//il token e sotto await, non e immediato
+    if(workspaceId){
       this.dataService.setWorkspaceId(this.workspaceId);
       sessionStorage.setItem("workid", this.workspaceId);
       this.router.navigate(["workspace"]);
@@ -47,12 +47,11 @@ export class HomeComponent implements OnInit {
 
   joinWorkspace=async ()=>{
     let res= await this.homeService.joinWorkspace(this.token,this.workspaceToJoin);
-    if(this.workspaceName!="workspace not found"){//il token e sotto await, non e immediato
+    if(this.workspaceName!="workspace not found"){
       this.dataService.setWorkspaceId(this.workspaceToJoin);
-      localStorage.setItem("workid", this.workspaceToJoin);
+      sessionStorage.setItem("workid", this.workspaceToJoin);
       this.router.navigate(["workspace"]);
     }
-    console.log(res);
   }
 
   /*leaveWorkspace=async ()=>{

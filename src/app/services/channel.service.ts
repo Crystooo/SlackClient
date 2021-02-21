@@ -9,6 +9,11 @@ export class ChannelService {
   genericUrl="http://localhost:3001";
   constructor(private http:HttpClient) { }
 
+  getName = async(channel_id:string) => {
+    let name = await this.http.get(`${this.genericUrl}/channels/`, {headers: {channel_id}}).toPromise() as Promise<string>
+    return name;
+  } 
+
   getUsers = async (channel_id:string) => {
     let users = await this.http.get(`${this.genericUrl}/channels/users`, {headers: {channel_id}}).toPromise() as Promise<string[]>
     return users;

@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="workspace.component.css">
+    <link rel="stylesheet" type="text/css" href="workspace.component.css">
     <title>{{name}}</title>
   </head>
   <body>
@@ -34,7 +34,7 @@
 -->
 
 <!-- containder -->
-<div class="container-fluid">
+
     <div class="row">
         <div class="col-md-2">
         </div>
@@ -55,7 +55,7 @@
                         <div class="">
                           <ul class="nav flex-column">
                             <li class="nav-item" *ngFor="let channel of channels">
-                              <a class="nav-link text" aria-current="" (click)='selectChannel(channel.id)'>{{channel.name}}</a>
+                              <a class="nav-link text" aria-current="" routerLink='/workspace/channel/{{channel.id}}'>{{channel.name}}</a>
                             </li>
                           </ul>
                         </div>
@@ -69,7 +69,7 @@
                         <ul class="nav flex-column">
                           <li class="nav-item"  *ngFor="let user of users">
                             <a class="nav-link text"  routerLink='/workspace/dm/{{user.email}}'>{{user.username}}</a>
-                          </li>
+                          </li>  
                         </ul>
                       </div>
                     </div>
@@ -77,16 +77,11 @@
             </div>
         </div>
         <!--main-->
-        <div>
-            <div role="main" class= "chat">
-              <label for="userName">Username</label>
-              <input type="text" id="userName" >
-              <label for="message">Message</label>
-              <input type="text" id="message" >
-            </div>
+        <div class="out">
+            <router-outlet></router-outlet>
         </div>
     </div>
-</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   </body>
 </html>

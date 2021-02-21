@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ChannelService } from 'src/app/services/channel.service';
 
 @Component({
@@ -7,18 +8,26 @@ import { ChannelService } from 'src/app/services/channel.service';
   styleUrls: ['./channel.component.css']
 })
 export class ChannelComponent implements OnInit {
-
-  constructor(private channelService:ChannelService) { }
   id: string = "";
   users: string[] = [];
   content: string=""//preso con ngmodel
   userId:string=""
   toAdd:string | string[] = ""
+  navigationSubscription: any;
+  channelName:string=""
 
+  constructor(private channelService:ChannelService, private activeRoute:ActivatedRoute, private router:Router) { 
+    this.navigationSubscription = this.router.events.subscribe((e:any) => {if (e instanceof NavigationEnd) this.ngOnInit()})
+  }
+  
   async ngOnInit() {
-    this.id = sessionStorage.getItem('channelId') as string;
+    this.id = this.activeRoute.snapshot.paramMap.get('id') as string;
     this.users = await this.channelService.getUsers(this.id);
-    console.log(this.users);
+    await this.getChannelName();
+  }
+
+  getChannelName = async()=>{
+    this.channelName= await this.channelService.getName(this.id);
   }
 
   createMessage = async()=>{
@@ -39,5 +48,9 @@ export class ChannelComponent implements OnInit {
   addToChannel = async()=>{
     let messages=await this.channelService.addToChannel(this.toAdd)
     console.log("add to channel: ",this.toAdd);
+  }
+
+  ngOnDestroy() {
+    this.navigationSubscription && this.navigationSubscription.unsubscribe();
   }
 }

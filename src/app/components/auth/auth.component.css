@@ -90,6 +90,7 @@
     font-weight: 600;
     font-family: 'Nunito', sans-serif;
     background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+    transition: 0.3s;
   }
   
   .submit:hover{

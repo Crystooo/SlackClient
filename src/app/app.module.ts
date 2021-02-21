@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
-import { FailedAuthComponent } from './components/failed-auth/failed-auth.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { ChannelComponent } from './components/channel/channel.component';
 
@@ -16,7 +15,6 @@ import { ChannelComponent } from './components/channel/channel.component';
     AppComponent,
     AuthComponent,
     HomeComponent,
-    FailedAuthComponent,
     WorkspaceComponent,
     ChannelComponent
   ],

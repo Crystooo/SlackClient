@@ -19,6 +19,7 @@ export class WorkspaceComponent implements OnInit {
   async ngOnInit() {
     //this.id = this.dataService.getWorkspaceId();
     this.id = sessionStorage.getItem("workid") != null ? sessionStorage.getItem("workid") as string : "";
+    console.log(this.id)
     this.id != "" && (this.name = await (await this.workspaceService.getName(this.id)).name)
     this.channels = await this.workspaceService.getChannels(this.id);
     this.users = await this.workspaceService.getUsers(this.id);
