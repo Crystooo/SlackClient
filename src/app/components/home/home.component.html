@@ -22,6 +22,7 @@
           <label class="mr-sm-2" for="inlineFormCustomSelect">Select Workspace:</label>
           <select class="custom-select mr-sm-3 center" id="inlineFormCustomSelect" [(ngModel)]="workspaceId">
             <option *ngIf="workspaces.length == 0" value="" selected>no workspaces joined yet!</option>
+            <option></option>
             <option *ngFor="let workspace of workspaces;" [value]="workspace.id">{{workspace.name}}</option>
           </select>
         </div>
@@ -31,7 +32,7 @@
 
         <form>
           <div class="form-group">
-            <label for="">Create Workspace:</label>
+            <label for="" style="width:200px">Create Workspace:</label>
             <div class="col-5 center ">
               <input type="text" class="form-control " id="" name="workspaceName" placeholder="Workspace name.." [(ngModel)]="workspaceName">
             </div>
@@ -41,15 +42,16 @@
 
         <form>
           <div class="form-group">
-            <label for="">Join Workspace:</label>
+            <label for="" style="width:200px">Join Workspace:</label>
             <div class="col-5 center ">
               <input type="text" class="form-control" name="workspaceId" id="" placeholder="Insert workspace token" [(ngModel)]='workspaceToJoin'>
               </div>
           </div>
           <button type="submit" class="col-3 btn btn-primary buttsub" style="margin-bottom: 1em;"  (click)='joinWorkspace()'>JOIN</button>
         </form>
-        
-       
+        <button class="btn btn-primary" style="color:red;" (click)="deleteAccount()">delete account</button>
+        <p style="text-align: center;" *ngIf="isDeleted">account deleted</p>
+        <p style="text-align: center;color:red;" *ngIf="workspaceName=='workspace not found'">user already is in this workspace</p>
       </div>
     </div>
     </div>
