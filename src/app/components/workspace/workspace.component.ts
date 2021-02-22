@@ -22,8 +22,9 @@ export class WorkspaceComponent implements OnInit {
   users:{email:string, username:string}[]=[]
 
   async ngOnInit() {
-    this.id = sessionStorage.getItem("workid") != null ? sessionStorage.getItem("workid") as string : "";
+    this.id = sessionStorage.getItem("workid") as string;
     this.id != "" && (this.name =  (await this.workspaceService.getName(this.id)).name)
+    console.log(this.name)
     this.channels = await this.workspaceService.getChannels(this.id);
     this.users = await this.workspaceService.getUsers(this.id);
     this.token = sessionStorage.getItem('tkn') as string;
