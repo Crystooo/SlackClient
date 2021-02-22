@@ -9,6 +9,11 @@ export class ChannelService {
   genericUrl="http://localhost:3001";
   constructor(private http:HttpClient) { }
 
+  getUserName = async(user_id:string) => {
+    let userName = await this.http.get(`${this.genericUrl}/channels/users/user`, {headers: {user_id}}).toPromise() as Promise<string>
+    return userName;
+  }
+
   getName = async(channel_id:string) => {
     let name = await this.http.get(`${this.genericUrl}/channels/`, {headers: {channel_id}}).toPromise() as Promise<string>
     return name;
@@ -19,8 +24,8 @@ export class ChannelService {
     return users;
   }
 
-  createMessage = async (user_id:string,content:string) => {
-    let message = await this.http.post(`${this.genericUrl}/channels/messages`,content,{headers:{user_id}}).toPromise() as Promise<{message:string}>
+  createMessage = async (channel_id:string,user_id:string,content:string) => {
+    let message = await this.http.post(`${this.genericUrl}/channels/messages`,{content},{headers:{channel_id,user_id}}).toPromise() as Promise<{message:string}>
     return message;
   }
 
@@ -30,12 +35,12 @@ export class ChannelService {
   }
 
   getMessages = async (channel_id:string)=>{
-    let messages = await this.http.get(`${this.genericUrl}/channels/messages`, {headers: {channel_id}}).toPromise() as Promise<Message[]>
+    let messages = await this.http.get(`${this.genericUrl}/channels/messages`, {headers: {channel_id}}).toPromise() as Promise<Message[]| string>
     return messages;
   }
 
-  addToChannel = async (to_add:string | string[]) => {
-    let message = await this.http.put(`${this.genericUrl}/channels/users`, null, {headers: {to_add}}).toPromise() as Promise<string>
+  addToChannel = async (to_add:string | string[], channel_id:string, workspace_id:string) => {
+    let message = await this.http.put(`${this.genericUrl}/channels/add`, null, {headers: {to_add, channel_id, workspace_id}}).toPromise() as Promise<string>
     return message;
   }
 

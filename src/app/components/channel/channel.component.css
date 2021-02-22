@@ -40,7 +40,7 @@
   #loginform {
     margin: 0 auto;
     padding-bottom: 25px;
-    padding-left: 300px;
+    padding-left: 200px;
     background: #eee;
     height:94.5vh;
     /*border: 2px solid #212121;
@@ -60,12 +60,12 @@
    
   #chatbox {
     text-align: left;
-    margin: 0 auto;
+    margin-left:1.5em;
     margin-bottom: 25px;
     padding: 10px;
     background: #fff;
-    height: 300px;
-    width: 530px;
+    height: 70vh;
+    width: 79.5vw;
     border: 1px solid #a7a7a7;
     overflow: auto;
     border-radius: 4px;
@@ -90,7 +90,6 @@
   border: 1px solid #e65100;
   color: white;
   padding: 4px 10px;
-  font-weight: bold;
   border-radius: 4px;
 }
  
@@ -142,3 +141,25 @@
   .msgln b.user-name-left {
     background: orangered;
   }
+
+  .container-m {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .darker-m {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  
+ 
+  .time-right-m {
+    float: right;
+    color: #aaa;
+  }
+  
+
+ 

@@ -15,26 +15,10 @@
 <nav class=" navbar navbar-light bg-light fixed-top" style="padding-top: 0; padding-bottom: 0;">
     <div class="form-control-primary container-fluid ">
       <span class="navbar-brand" style="color: white;">{{name}}</span>
-    </div>
+    
+    <button type="button float: right;"  class="btn btn-outline-light" (click)="logout()">LogOut</button> 
+  </div>
   </nav> 
-
-<!--   2 nav
-    <nav class=" navbar navbar-light bg-light fixed-top">
-    <form class="container-center">
-      <div class="input-group">
-        <a class="  navbar-brand" href="#">
-            <img src="img/slack.png" alt="" width="" height="40" class="">
-            
-          </a>
-        <span class="input-group-text" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
-    </form>
-  </nav>
--->
-
-<!-- containder -->
-
     <div class="row">
         <div class="col-md-2">
         </div>
@@ -43,15 +27,17 @@
             <div class="left-sidebar">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                      <h5 class="nav-link text" aria-current="">Threads</h5>
+                      <h2 class="nav-link text" aria-current="">Threads</h2>
                     </li>
                 </ul>   
-                <div class="" id="" style="padding-top: 2em; padding-left: 1em;">
+                <div class="" style="padding-top: 2em; padding-left: 1em;">
                     <div class="">
-                      <h5 class="" id="">
-                          Channels
-                      </h5>
-                      <div id="" class="" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="d-flex">
+                    <h2 class="">Channels</h2>
+                    <button type="button" class="btn btn-outline-secondary btn-pvr " mat-button (click)='openAddChannelDialog()'>+</button>
+                  </div>
+
+                      <div class="" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="">
                           <ul class="nav flex-column">
                             <li class="nav-item" *ngFor="let channel of channels">
@@ -62,9 +48,9 @@
                       </div>
                 </div>
                     <div class="" style="padding-top: 2em;">
-                      <h5 class="" id="">
+                      <h2 class="">
                         Direct Message
-                      </h5>
+                      </h2>
                       <div>
                         <ul class="nav flex-column">
                           <li class="nav-item"  *ngFor="let user of users">

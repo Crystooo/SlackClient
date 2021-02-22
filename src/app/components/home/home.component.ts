@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   enterWorkspace = () => {
-    this.dataService.setWorkspaceId(this.workspaceId);
+    //this.dataService.setWorkspaceId(this.workspaceId);
     sessionStorage.setItem("workid", this.workspaceId);
     this.router.navigate(["workspace"]);
   }

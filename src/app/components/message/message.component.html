@@ -1,0 +1,9 @@
+<p>Ci sono</p>
+<div> 
+<div class="container darker" *ngFor="let message of chronology">
+  <!--{{getUserName(message.userId)}}-->
+  <h4>{{userName}}</h4>
+  <p>{{message.content}}</p>
+  <span class="time-left">{{message.time }}</span><!--| date:"HH:mm"-->
+</div>
+</div>

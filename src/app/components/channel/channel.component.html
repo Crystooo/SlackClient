@@ -1,14 +1,23 @@
 <div id="wrapper">
     <!---->
     <div id="menu">
-        <p class="welcome">Welcome, {{channelName}}<b></b></p>
-        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+        <p class="welcome">{{channelName | uppercase}}<b></b></p>
+        <button type="button" class="btn btn-outline-info" style="margin-right: 1em;" mat-button (click)='openAddUserDialog()'>Invite users</button>
+        <button type="button" style="margin-right: 1em;" class="btn btn-outline-success" mat-button (click)="openUsersDialog()">Users</button>
+        <button type="button" class="btn btn-outline-danger" (click)='leaveChannel()'>Leave channel</button>
     </div>
 
-    <div id="chatbox"></div>
+    <div id="chatbox">
+        <div class="container-m darker-m" *ngFor="let message of chronology">
+            <h4 style="margin-bottom: 0;font-size: 1.2em;">{{message.userId}}</h4>
+            <p style="margin-bottom: 0; margin-left: 0.5em">{{message.content}}</p>
+            <span class="time-left-m" style="margin-left: 95%;" >{{message.time | date:"HH:mm"}}</span>
+        </div>
+    </div>
 
     <form name="message" action="">
         <input name="content" [(ngModel)]="content" type="text" id="usermsg" />
-        <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
+        <input name="submitmsg" type="submit" id="submitmsg" value="Send" (click)="createMessage()"/>
+        
     </form>
 </div>

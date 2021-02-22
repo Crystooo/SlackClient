@@ -1,0 +1,19 @@
+<div style="overflow-y: hidden;" mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Insert channel name:</mat-label>
+      <input style="display: block;" matInput [(ngModel)]="data.name">
+
+      
+    </mat-form-field>
+    <div style="padding-bottom: 0.4em;">
+      <mat-label style="display: block;">Private:</mat-label>
+      <mat-radio-group [(ngModel)]="data.privacy" aria-label="Private:">
+        <mat-radio-button value="true">Yes</mat-radio-button>
+        <mat-radio-button style="margin-left: 0.2em;"value="false">No</mat-radio-button>
+      </mat-radio-group>
+    </div>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-outline-danger" style="margin-right: 1em;"  mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button class="btn btn-primary" [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>

@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+    <p>Add users</p>
+    <mat-form-field>
+      <mat-label>Insert emails:</mat-label>
+      <input matInput [(ngModel)]="data">
+    </mat-form-field>
+</div>
+  <div mat-dialog-actions>
+    <button class="btn btn-outline-danger" style="margin-right: 1em;"  mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button class="btn btn-primary" [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+  </div>

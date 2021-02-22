@@ -12,7 +12,10 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  //httpHeaders = new HttpHeaders().set('Content-Type', 'application/json')//.set('Access-Control-Allow-Origin', '*');
+  getEmail = (tkn:string) => {
+    let email = this.http.get(`${this.genericUrl}/auth/email`, {headers: {tkn}}).toPromise() as Promise<string>
+    return email;
+  }
   
   register = (user: User) => {
     console.log(user);
@@ -27,5 +30,5 @@ export class AuthService {
     //SE NON METTO NIENTE PRIMA DI HEADERS, IN AUTOMATICO SI PRENDERA' GLI HEADERS COME BODY
   }
   
-  //logout = (tkn:string) => this.http.delete(`${this.genericUrl}/auth/logout`,tkn);
+  logout = (tkn:string) => this.http.delete(`${this.genericUrl}/auth/logout`,{headers: {tkn}}).toPromise() as Promise<{message:string}>;
 }

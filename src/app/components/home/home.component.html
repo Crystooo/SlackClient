@@ -22,6 +22,7 @@
           <label class="mr-sm-2" for="inlineFormCustomSelect">Select Workspace:</label>
           <select class="custom-select mr-sm-3 center" id="inlineFormCustomSelect" [(ngModel)]="workspaceId">
             <option *ngIf="workspaces.length == 0" value="" selected>no workspaces joined yet!</option>
+            <option></option>
             <option *ngFor="let workspace of workspaces;" [value]="workspace.id">{{workspace.name}}</option>
           </select>
         </div>
@@ -31,7 +32,7 @@
 
         <form>
           <div class="form-group">
-            <label for="">Create Workspace:</label>
+            <label for="" style="width:200px">Create Workspace:</label>
             <div class="col-5 center ">
               <input type="text" class="form-control " id="" name="workspaceName" placeholder="Workspace name.." [(ngModel)]="workspaceName">
             </div>
@@ -41,7 +42,7 @@
 
         <form>
           <div class="form-group">
-            <label for="">Join Workspace:</label>
+            <label for="" style="width:200px">Join Workspace:</label>
             <div class="col-5 center ">
               <input type="text" class="form-control" name="workspaceId" id="" placeholder="Insert workspace token" [(ngModel)]='workspaceToJoin'>
               </div>

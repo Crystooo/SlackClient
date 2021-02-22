@@ -28,8 +28,8 @@ export class WorkspaceService {
     return message;
   }
 
-  createChannel = async (workspace_id:string,tkn:string) =>{
-    let message = await this.http.post(`${this.genericUrl}/workspaces/channels`,{ headers: { tkn,workspace_id } }).toPromise() as Promise<{message:string}>
+  createChannel = async (workspace_id:string,tkn:string, channelName:string, privacy:boolean) =>{
+    let message = await this.http.post(`${this.genericUrl}/workspaces/channels`, {channelName, privacy},{ headers: { tkn,workspace_id } }).toPromise() as Promise<{message:string}>
     return message
   }
   deleteChannel= async(workspace_id:string,channel_id:string)=>{
