@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     //this.token = this.dataService.getTkn();
     this.username = sessionStorage.getItem("username") as string;
     this.token = sessionStorage.getItem("tkn") as  string;
+    sessionStorage.removeItem('workid')
     this.isDeleted=false
     this.getAllWorkspaces();
   }
@@ -37,10 +38,8 @@ export class HomeComponent implements OnInit {
 
   createWorkspace=async ()=>{
     let {workspaceId}= await this.homeService.createWorkspace(this.token,this.workspaceName);
-    this.workspaceId=workspaceId;
     if(workspaceId){
-      this.dataService.setWorkspaceId(this.workspaceId);
-      sessionStorage.setItem("workid", this.workspaceId);
+      sessionStorage.setItem("workid", workspaceId);
       this.router.navigate(["workspace"]);
     }
   }
